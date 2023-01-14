@@ -1,0 +1,1 @@
+export const InvalidParameterError = new Error('Please only use alphabetical characters');
