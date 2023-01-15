@@ -1,6 +1,7 @@
 
 import { InvalidParameterError } from "../scripts/errors.js";
 import { englishToMorse } from "../scripts/englishToMorse.js"
+import { toEnglish } from "../scripts/englishToMorse.js";
 
 
 // What I want my functions to do.
@@ -47,8 +48,40 @@ describe('englishToMorse', () => {
   })
   it(`should return morse code for a single word`, () => {
     expect(englishToMorse('Morse')).toBe('-- --- .-. ... .')
+    expect(englishToMorse('Hello')).toBe('.... . .-.. .-.. ---')
+    expect(englishToMorse('SOS')).toBe('... --- ...')
+    expect(englishToMorse('Lachlan')).toBe('.-.. .- -.-. .... .-.. .- -.')
+    expect(englishToMorse('Mitchell')).toBe('-- .. - -.-. .... . .-.. .-..')
+    expect(englishToMorse('Analea')).toBe('.- -. .- .-.. . .-')
   })
-  it(`should return morse code for strings containing plural words, with a double space between words`, () => {
+  it(`should return morse code for strings containing plural words, with a slash between words`, () => {
     expect(englishToMorse('Morse Code')).toBe('-- --- .-. ... . / -.-. --- -.. .')
+    expect(englishToMorse('Assignment meets all MVP requirements')).toBe('.- ... ... .. --. -. -- . -. - / -- . . - ... / .- .-.. .-.. / -- ...- .--. / .-. . --.- ..- .. .-. . -- . -. - ...')
+    expect(englishToMorse('My name is Lachlan Mitchell')).toBe('-- -.-- / -. .- -- . / .. ... / .-.. .- -.-. .... .-.. .- -. / -- .. - -.-. .... . .-.. .-..')
+    expect(englishToMorse('The quick brown fox jumped over the lazy dog')).toBe('- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. . -.. / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.')
   })
-}) 
+
+  describe('toEnglish', ()=> {
+    it('should return a string', () => {
+      const result = toEnglish('-- --- .-. ... .')
+      expect(typeof result).toBe('string')
+    })
+    it("should throw an error if  any elment isnt a '.' '-' '/'", () => {
+        expect(()=> {
+          toEnglish('4')
+        }).toThrow(InvalidParameterError);
+        expect(()=> {
+          toEnglish('-- --- .-. ... . / code')
+        }).toThrow(InvalidParameterError);
+        expect(()=> {
+          toEnglish('Yes this is just english')
+        }).toThrow(InvalidParameterError);
+      })
+      it('should be able to handle single words', () => {
+        expect(toEnglish('-- --- .-. ... .')).toBe('morse')
+      })
+      it('should be able to handle plural words', () => {
+        expect(toEnglish('- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. . -.. / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.')).toBe('the quick brown fox jumped over the lazy dog')
+      })
+    })
+  })

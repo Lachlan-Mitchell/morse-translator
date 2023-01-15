@@ -1,8 +1,6 @@
 import { InvalidParameterError } from "./errors"
 
-export const englishToMorse = (english) => {
-
-    const  engToMorse = {
+const  engToMorse = {
   A: ".-",
    B: "-...",
    C: "-.-.",
@@ -24,19 +22,34 @@ export const englishToMorse = (english) => {
    S: "...",
    T: "-",
    U: "..-",
+   V: "...-",
    W: ".--",
    X: "-..-",
    Y: "-.--",
    Z: "--.."
     }
+
+    let reverseMorseCode = Object.keys(engToMorse).reduce(function(acc, key) {
+      acc[engToMorse[key]] = key;
+      return acc;
+    }, {});
+    
+
+export const englishToMorse = (english) => {
     if(english.match(/\d/)) {
       throw InvalidParameterError;
     } else {
       let morse = english.toUpperCase().split("").map((char)=> char === ' ' ? '/ ': engToMorse[char]+ ' ').join(''); 
       return morse.trimEnd();
     }
-
-    
-  
-  
 }
+
+export const toEnglish = (morse) => {
+  if (!/^[.-\s/]+$/.test(morse)) {
+    throw InvalidParameterError;
+  } else {
+    return morse.split(' ').map((letter) => letter === '/' ? ' ' :  reverseMorseCode[letter]).join('').toLowerCase()
+  }
+}
+
+
