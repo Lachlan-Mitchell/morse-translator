@@ -1,1 +1,2 @@
-export const InvalidParameterError = new Error('Please only use alphabetical characters');
+export const InvalidParameterError = new Error('Currently this translator does not support one of those special characters');
+export const InvalidApostropheSyntax = new Error("When translating to morse code we dont use the (') apostrophe symbol, we escape characters with a backslash(\). This is due to them being represented as the same in dots and dashes")

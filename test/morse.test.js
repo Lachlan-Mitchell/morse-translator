@@ -1,7 +1,6 @@
-
-import { InvalidParameterError } from "../scripts/errors.js";
 import { englishToMorse } from "../scripts/englishToMorse.js"
 import { toEnglish } from "../scripts/englishToMorse.js";
+
 
 
 // What I want my functions to do.
@@ -35,17 +34,6 @@ describe('englishToMorse', () => {
   it('returns an empty string if an empty string is given', () => {
     expect(englishToMorse('')).toBe('')
   })
-  it('returns an error if a number is anywhere in the string', () => {
-    expect(()=> {
-      englishToMorse('4')
-    }).toThrow(InvalidParameterError);
-    expect(()=> {
-      englishToMorse('4 I am a  Jolly good  fella')
-    }).toThrow(InvalidParameterError);
-    expect(()=> {
-      englishToMorse('Wow if only I was 4 years old')
-    }).toThrow(InvalidParameterError);
-  })
   it(`should return morse code for a single word`, () => {
     expect(englishToMorse('Morse')).toBe('-- --- .-. ... .')
     expect(englishToMorse('Hello')).toBe('.... . .-.. .-.. ---')
@@ -59,6 +47,12 @@ describe('englishToMorse', () => {
     expect(englishToMorse('Assignment meets all MVP requirements')).toBe('.- ... ... .. --. -. -- . -. - / -- . . - ... / .- .-.. .-.. / -- ...- .--. / .-. . --.- ..- .. .-. . -- . -. - ...')
     expect(englishToMorse('My name is Lachlan Mitchell')).toBe('-- -.-- / -. .- -- . / .. ... / .-.. .- -.-. .... .-.. .- -. / -- .. - -.-. .... . .-.. .-..')
     expect(englishToMorse('The quick brown fox jumped over the lazy dog')).toBe('- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. . -.. / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.')
+  }) 
+  it('should be able to handle numbers and some special chars', () => {
+    expect(englishToMorse('No!')).toBe('-. --- -.-.--')
+    expect(englishToMorse('I Love to v13t &dan + this makes = $100')).toBe('.. / .-.. --- ...- . / - --- / ...- .---- ...-- - / .-... -.. .- -. / .-.-. / - .... .. ... / -- .- -.- . ... / -...- / ...-..- .---- ----- -----')
+    expect(englishToMorse('1234')).toBe('.---- ..--- ...-- ....-')
+    expect(englishToMorse('!$&+=')).toBe('-.-.-- ...-..- .-... .-.-. -...-')
   })
 
   describe('toEnglish', ()=> {
@@ -66,16 +60,9 @@ describe('englishToMorse', () => {
       const result = toEnglish('-- --- .-. ... .')
       expect(typeof result).toBe('string')
     })
-    it("should throw an error if  any elment isnt a '.' '-' '/'", () => {
-        expect(()=> {
-          toEnglish('4')
-        }).toThrow(InvalidParameterError);
-        expect(()=> {
-          toEnglish('-- --- .-. ... . / code')
-        }).toThrow(InvalidParameterError);
-        expect(()=> {
-          toEnglish('Yes this is just english')
-        }).toThrow(InvalidParameterError);
+    it('should return an empty string if given an empty string', () => {
+      expect(toEnglish('')).toBe('')
+    })
       })
       it('should be able to handle single words', () => {
         expect(toEnglish('-- --- .-. ... .')).toBe('morse')
@@ -84,4 +71,3 @@ describe('englishToMorse', () => {
         expect(toEnglish('- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. . -.. / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.')).toBe('the quick brown fox jumped over the lazy dog')
       })
     })
-  })

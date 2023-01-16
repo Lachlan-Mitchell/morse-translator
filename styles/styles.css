@@ -1,0 +1,107 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #333;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  background-image: url("https://academy-cdn.wedio.com/2021/09/pexels-tatiana-fet-1105766-min-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#input-box, #output-box {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  background-color: #2d2d2d;
+  border-radius: 5px;
+}
+
+#input-box label, #output-box label {
+  font-size: 22px;
+  font-weight: normal;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #000;
+}
+
+label{
+  display: block;
+}
+
+#language-select, #input {
+  width: 60%;
+  padding: 12px 20px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #000;
+}
+
+#translate {
+  background-color: #fff;
+  color: #333;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #000;
+}
+
+#translate:hover, #translate:active {
+  background-color: #333;
+  color: #fff;
+}
+
+#output {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 599px) {
+  #container{
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: center;
+  }
+  
+  #input-box, #output-box {
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #input-box label, #output-box label {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #000;
+  }
+
+  #output-box label {
+    margin-top: 2px;
+  }
+
+  #output {
+    font-size: 18px;
+  }
+}
+
