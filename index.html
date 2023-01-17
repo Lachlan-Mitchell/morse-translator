@@ -5,18 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Morse Translator</title>
+  <link href="./styles/styles.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Hi and welcome to the Morse Translator. it is currently underdevelopment!</h1>
-  <style>
-    body{
-      background-image:repeating-radial-gradient(circle, #6A9AC4, #6A6DC4 10%, #6AC4C1 15%);
-    }
-
-    h1 {
-      text-align: center;
-    }
-  
-  </style>
+  <div id="container">
+    <div id="input-box">
+      <label>Current Language:</label>
+      <select id="language-select">
+        <option value="english">English</option>
+        <option value="morse">Morse</option>
+      </select>
+      <label>Text to Translate: </label>
+      <input id="input"></input>
+  </div>
+    <button type="button" id="translate">Translate to</button>
+      <div id="output-box">
+        <label id="result">Morse Translation: </label>
+        <div id="output"></div>
+  </div>
+  </div>
+  <script type="module" src="./scripts/script.js" defer ></script>
 </body>
 </html>

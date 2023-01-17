@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Test files for morsecode-translator",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lachlan-Mitchell/morse-translator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lachlan-Mitchell/morse-translator/issues"
+  },
+  "homepage": "https://github.com/Lachlan-Mitchell/morse-translator#readme",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "type": "module"
+}
